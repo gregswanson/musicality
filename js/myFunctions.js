@@ -91,7 +91,7 @@ console.log($('#search-genre').val());
 	var videoId = youtubeString.split('be/')[1];
 
 	var $newitems = 
-			$('<div class="portfolio-item grid-item' + " " + myUsers2[i].level + '" id="' + myUsers2[i].id + '" data-youtube="https://www.youtube.com/embed/' + videoId + '" ' + 'data-level="' + myUsers2[i].level + '">' +
+			$('<div class="portfolio-item grid-item' + " " + myUsers2[i].level + '" id="' + [i] + '" data-youtube="https://www.youtube.com/embed/' + videoId  + '">' +
 						'<div class="porttopbar' + ' ' + myUsers2[i].level + '"></div>' +
 						'<div class="innerport">' +
 						'<div class="isoimg col-xs-4"><img src="images/placeholder_75x75.png"></div>' +
@@ -104,22 +104,19 @@ console.log($('#search-genre').val());
 
 
 	}
-	
-	//$isogrid.isotope( 'insert', $newitems );
-	//console.log($newitems);
-	//return false;
+
 });
 
 /////Open Modal
 $('.grid-container').on( 'click', '.grid-item', function() {
 	var modalID = this.id;
 	var url = $(this).data('youtube');
-	var level = $(this).data('level');
+	var level = myUsers2[modalID].level;
   $('#myModal').modal('show');
-  $('#modalTitle').text($(this).find('.name').text());
-  $('#modalInst').text($(this).find('.inst').text());
-  $('#modalCity').text($(this).find('.city').text());
-  $('#modalLevel').text(level);
+  $('#modalTitle').text(myUsers2[modalID].name);
+  $('#modalInst').text(myUsers2[modalID].Instrument);
+  $('#modalCity').text(myUsers2[modalID].city);
+  $('#modalLevel').text(myUsers2[modalID].level);
   $('#modalFrame').attr('src', url);
 
  //Close Modal - Pass 
@@ -186,8 +183,6 @@ console.log(name  + '\n' + username  + '\n' + password  + '\n' + city  + '\n' + 
 	$('#register-info').val("");
 	$('#register-youtube').val("");
 
-
-	
 		return false;
 })
 
